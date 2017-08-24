@@ -34,7 +34,7 @@ f_out = file(os.path.join("sphinx",sys.argv[1])+".txt", "w+")
 f_out.write(".. _"+sys.argv[1]+":\n\n")
 f_in.readline()                                  #  ######################
 line = f_in.readline()
-line= line.split('"')[1]             #  # PyBrain Tutorial "Classification ..."
+line = line.split('"')[1]             #  # PyBrain Tutorial "Classification ..."
 f_out.write(line+"\n")
 f_out.write("="*len(line)+'\n\n')
 
@@ -56,21 +56,21 @@ for line in f_in:
     if '"""' in line:
         for i in range(line.count('"""')):
             comment = 1 - comment
-        if line.count('"""')==2:
+        if line.count('"""') == 2:
             linecomment = True
 
         line = line.replace('"""','')
-        if comment==0:
+        if comment == 0:
             line += '::'
             if not inblock:
                 line = line.strip()
 
-    elif comment==0 and line!='\n':
+    elif comment == 0 and line!='\n':
         line = "  "+line
 
     if line.startswith('..'):
         inblock = True
-    elif line=="\n":
+    elif line =="\n":
         inblock = False
 
     if (comment or linecomment) and not inblock:
